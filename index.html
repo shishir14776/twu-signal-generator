@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TWU OTC FUTURE SIGNAL GENERATOR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="login-card">
+            <div class="login-header">
+                <h2 class="login-title">TWU OTC SIGNAL GENERATOR</h2>
+                <p class="login-subtitle">Please login to continue</p>
+            </div>
+            <div class="login-content">
+                <div id="login-error" class="login-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="login-error-message">Invalid username or password</span>
+                </div>
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label class="form-label" for="username">Username</label>
+                        <input type="text" id="username" class="form-input" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="login-button">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content">
+        <!-- User Menu -->
+        <div class="user-menu">
+            <div class="user-info">
+                <div id="user-avatar" class="user-avatar">U</div>
+                <span id="username-display">Username</span>
+            </div>
+            <button id="logout-button" class="logout-button">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+
+        <div class="container">
+            <header>
+                <div class="title-container">
+                    <h1 class="title">TWU OTC FUTURE SIGNAL GENERATOR</h1>
+                </div>
+                <div class="timezone">
+                    <i class="fas fa-clock"></i>
+                    <p>Timezone: Asia/Dhaka | Date: <span id="current-date"></span> | Time: <span id="current-time"></span></p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Join our Telegram Channel</h2>
+                    </div>
+                    <div class="card-content">
+                        <a href="https://t.me/twufuturesignal01" target="_blank" rel="noopener noreferrer" class="telegram-link">
+                            <i class="fas fa-paper-plane"></i>
+                            https://t.me/twufuturesignal01
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Signal Generator</h2>
+                        <p class="card-description">Configure and generate trading signals</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label class="form-label">Available Assets:</label>
+                            <select id="asset-select" class="form-select">
+                                <option value="">Select an asset</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Number of Signals to Generate:</label>
+                            <input type="number" id="signal-count" class="form-input" value="1" min="1" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Filter Signals:</label>
+                            <select id="filter-select" class="form-select">
+                                <option value="PUT/CALL">PUT/CALL</option>
+                                <option value="CALL">CALL</option>
+                                <option value="PUT">PUT</option>
+                            </select>
+                        </div>
+
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="backtest-filter" class="form-checkbox" />
+                            <label for="backtest-filter" class="checkbox-label">
+                                Show only backtested signals (100% accuracy)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button id="generate-signals" class="button button-primary">
+                            Generate Signals
+                        </button>
+                        <button id="reset-signals" class="button button-outline">
+                            <i class="fas fa-sync-alt"></i>
+                            Reset Signals
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header card-header-flex">
+                        <div>
+                            <h2 class="card-title">Generated Signals</h2>
+                            <p class="card-description"><span id="signal-count-display">0</span> signals available</p>
+                        </div>
+                        <button id="copy-signals" class="button button-outline button-small">
+                            <i class="fas fa-clipboard"></i>
+                            Copy All
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div id="error-message" class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span id="error-text"></span>
+                        </div>
+                        
+                        <div id="animation-message" class="animation-message">
+                            <p>New Signals Generated!</p>
+                        </div>
+
+                        <div id="signals-container">
+                            <ul id="signal-list" class="signal-list"></ul>
+                            <div id="empty-state" class="empty-state">
+                                <p>No signals generated yet</p>
+                                <p>Generate signals to see them here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="separator"></div>
+                <p>Trade With Us &copy; <span id="current-year"></span> | All Rights Reserved</p>
+                <p style="margin-top: 0.25rem;">Designed for professional traders</p>
+            </footer>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">
+        <div class="toast-title">Title</div>
+        <div class="toast-message">Message</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
