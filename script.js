@@ -1,10 +1,10 @@
 // User authentication data
 const users = [
-    { username: "user1", password: "pass1" },
-    { username: "user2", password: "pass2" },
-    { username: "user3", password: "pass3" },
-    { username: "user4", password: "pass4" },
-    { username: "user5", password: "pass5" }
+    { username: "shishir", password: "shirhir1234" },
+    { username: "tamim", password: "tamim@2025" },
+    { username: "zim", password: "zim@2025" },
+    { username: "ahad", password: "ahad@2025" },
+    { username: "test", password: "test@6969" }
 ];
 
 // Authentication state
